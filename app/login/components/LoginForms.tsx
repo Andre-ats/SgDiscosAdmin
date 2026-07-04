@@ -5,25 +5,53 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FieldGroup, Field, FieldLabel, FieldDescription } from "@/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import { Spinner } from "@/components/ui/spinner";
 import { Shield, Mail, LogIn, Lock } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Fragment, useState } from "react";
+import { toast } from "sonner";
 
 export function LoginForms() {
 
     const [email, setEmail] = useState<string>("")
     const [senha, setSenha] = useState<string>("")
 
-    function logar() {
+    const [spinner, setSpinner] = useState(false)
+    const [erro, setErro] = useState<any>()
+
+
+    async function logar() {
         const dados: ILogin = {
             login: email,
-            senha: senha
-        }
+            senha,
+        };
 
-        const response = login(dados)
-        console.log(response)
+        try {
+            setSpinner(true);
+
+            const teste = await login(dados);
+
+            console.log(teste);
+
+            toast.success("Login realizado com sucesso!");
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error(error.message);
+            } else {
+                toast.error("Erro inesperado.");
+            }
+        } finally {
+            setSpinner(false);
+        }
     }
 
-    return (
+return (
+    <Fragment>
+        {spinner &&
+            <Fragment>
+                <div className="absolute inset-0 bg-black/60 rounded-l-xl" />
+                <Spinner color="white" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-10 w-10" />
+            </Fragment>
+        }
         <Card className="w-4/5 my-10 sm:my-25 flex flex-row bg-[#1D212B]">
             <CardContent className="w-full flex items-center">
                 <FieldGroup className="flex items-center">
@@ -74,5 +102,6 @@ export function LoginForms() {
                 </FieldGroup>
             </CardContent>
         </Card>
-    )
+    </Fragment>
+)
 }

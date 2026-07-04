@@ -15,11 +15,11 @@ export async function login(props: ILogin) {
         }
     );
 
-    if (!response.ok) {
-        throw new Error("Erro ao realizar login.");
-    }
-
     const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error ?? "Erro ao realizar login.");
+    }
 
     localStorage.setItem("token", data.token);
 
