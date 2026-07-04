@@ -1,5 +1,6 @@
 "use client";
 
+import { ILogin, login } from "@/api/login/login";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FieldGroup, Field, FieldLabel, FieldDescription } from "@/components/ui/field";
@@ -9,11 +10,17 @@ import { useEffect, useState } from "react";
 
 export function LoginForms() {
 
-    const [email, setEmail] = useState<string>()
-    const [senha, setSenha] = useState<string>()
+    const [email, setEmail] = useState<string>("")
+    const [senha, setSenha] = useState<string>("")
 
     function logar() {
-        console.log(email, senha)
+        const dados: ILogin = {
+            login: email,
+            senha: senha
+        }
+
+        const response = login(dados)
+        console.log(response)
     }
 
     return (
