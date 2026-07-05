@@ -7,7 +7,7 @@ import { FieldGroup, Field, FieldLabel, FieldDescription } from "@/components/ui
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Spinner } from "@/components/ui/spinner";
 import { Shield, Mail, LogIn, Lock } from "lucide-react";
-import { FormEvent, Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { toast } from "sonner";
 
 export function LoginForms() {
@@ -47,7 +47,7 @@ export function LoginForms() {
                     <Spinner color="white" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-10 w-10" />
                 </Fragment>
             }
-            <Card className="w-4/5 my-10 sm:my-25 flex flex-row bg-[#1D212B]">
+            <Card className="w-4/5 my-10 sm:my-25 flex flex-row bg-fundoTerciaria">
                 <CardContent className="w-full flex items-center">
                     <form
                         onSubmit={(e) => {
@@ -109,7 +109,7 @@ export function LoginForms() {
                                 <Field className="w-1/2 mt-4">
                                     <Button
                                         type="submit"
-                                        className="bg-[#fcda54] text-color hover:bg-[#ffcf0d]"
+                                        className="bg-primaria text-color hover:bg-[#ffcf0d]"
                                     >
                                         <LogIn />
                                         Entrar

@@ -16,14 +16,14 @@ export function LoginImagem() {
                     </div>
                     <div className="flex flex-col items-center justify-center w-full h-25">
                         <CardTitle className="text-4xl flex mb-1">
-                            <p className="text-[#fcda54]">SG</p> DISCOS
+                            <p className="text-primaria">SG</p> DISCOS
                         </CardTitle>
                         <CardDescription className="text-white">Sua opção de música</CardDescription>
                     </div>
                 </div>
                 <div className="h-2/5 justify-center align-middle w-full">
-                    <CardTitle className="text-2xl text-[#fcda54] mb-1">Bem-vindo de volta!</CardTitle>
-                    <CardDescription className="text-white flex">Faça o login para acessar o painel <p className="text-[#fcda54] ml-1">administrativo</p>.</CardDescription>
+                    <CardTitle className="text-2xl text-primaria mb-1">Bem-vindo de volta!</CardTitle>
+                    <CardDescription className="text-white flex">Faça o login para acessar o painel <p className="text-primaria ml-1">administrativo</p>.</CardDescription>
                 </div>
                 <div className="h-1/4">
                     <div className="mt-9 flex items-center gap-3">
