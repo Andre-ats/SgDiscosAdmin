@@ -1,10 +1,12 @@
 "use client";
-import {flexRender, getCoreRowModel, useReactTable} from "@tanstack/react-table";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow,} from "@/components/ui/table";
+import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table";
 import { useEffect, useState } from "react";
 import { getProdutos } from "@/api/produtos/getProdutos";
-import { IProduto } from "@/api/produtos/typeProduto";
+import { EnumStatusProduto, IProduto } from "@/api/produtos/typeProduto";
 import { getColumns } from "./ColunaTabelaProdutos";
+import { putStatusProduto } from "@/api/produtos/putStatusProduto";
+import { toast } from "sonner";
 
 
 export function TabelaProdutos() {
@@ -26,10 +28,25 @@ export function TabelaProdutos() {
     }
 
     async function mudarStatus(produto: IProduto) {
-        await //alterarStatusProduto(produto.id);
+        try {
+            const novoStatus =
+                produto.statusProduto === EnumStatusProduto.Ativo
+                    ? EnumStatusProduto.Inativo
+                    : EnumStatusProduto.Ativo;
 
-        carregarProdutos();
+            await putStatusProduto(produto.id, novoStatus);
+
+            toast.success("Produto atualizado com sucesso!");
+            carregarProdutos();
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error(error.message);
+            } else {
+                toast.error("Erro ao atualizar o produto.");
+            }
+        }
     }
+
     const columns = getColumns({
         onMudarStatus: mudarStatus,
     });

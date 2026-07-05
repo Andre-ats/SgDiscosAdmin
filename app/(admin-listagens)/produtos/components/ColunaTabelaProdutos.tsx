@@ -36,8 +36,8 @@ export function getColumns({
                             className="rounded-md object-cover"
                         />
                         <div className="flex flex-col">
-                            <span className="text-[16px]">{row.original.nomeProduto}</span>
-                            <span className="text-[12px]">{row.original.nomeArtistaBandaProduto}</span>
+                            <span className="text-[16px] max-w-50 truncate">{row.original.nomeProduto}</span>
+                            <span className="text-[12px] max-w-50 truncate">{row.original.nomeArtistaBandaProduto}</span>
                         </div>
                     </div>
                 )
@@ -71,10 +71,10 @@ export function getColumns({
             cell: ({ row }) => (
                 <div className="flex flex-col w-1/2">
                     {row.original.statusProduto == "Inativo" &&
-                        <Button className="p-5 bg-green-500 hover:bg-green-700 text-black cursor-pointer">Ativar</Button>
+                        <Button onClick={() => onMudarStatus(row.original)} className="p-5 bg-green-500 hover:bg-green-700 text-black cursor-pointer">Ativar</Button>
                     }
                     {row.original.statusProduto == "Ativo" &&
-                        <Button className="p-5 bg-red-500 hover:bg-red-700 text-white cursor-pointer">Desativar</Button>
+                        <Button onClick={() => onMudarStatus(row.original)} className="p-5 bg-red-500 hover:bg-red-700 text-white cursor-pointer">Desativar</Button>
                     }
                 </div>
             ),
