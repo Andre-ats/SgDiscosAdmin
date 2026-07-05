@@ -7,6 +7,7 @@ import { FieldGroup, Field, FieldLabel, FieldDescription } from "@/components/ui
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Spinner } from "@/components/ui/spinner";
 import { Shield, Mail, LogIn, Lock } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import { toast } from "sonner";
 
@@ -16,6 +17,7 @@ export function LoginForms() {
     const [senha, setSenha] = useState<string>("")
 
     const [spinner, setSpinner] = useState(false)
+    const router = useRouter();
 
     async function logar() {
 
@@ -28,6 +30,7 @@ export function LoginForms() {
             setSpinner(true);
             await login(dados);
             toast.success("Login realizado com sucesso!");
+            router.push("/produtos")
         } catch (error) {
             if (error instanceof Error) {
                 toast.error(error.message);
