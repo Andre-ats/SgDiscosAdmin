@@ -1,4 +1,4 @@
-import { SideBarLayout } from "./layoutComponents/SideBarLayout";
+import { SideBarLayout } from "./components/layoutComponents/SideBarLayout";
 
 export default function ListagemLayout({
     children,

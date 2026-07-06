@@ -129,3 +129,16 @@ export interface IPaginacaoProdutos {
   itensPorPagina: number;
   totalPaginas: number;
 }
+
+export interface IGetProdutosInput {
+    paginaAtual?: number;
+    itensPorPagina?: number;
+
+    nomeProduto?: string;
+    codigoBarra?: string;
+
+    generoMusical?: string;
+    formatoProduto?: string;
+    tipoDeAlbum?: string;
+    statusProduto?: string;
+}
