@@ -8,6 +8,7 @@ import { getColumns } from "./ColunaTabelaProdutos";
 import { putStatusProduto } from "@/api/produtos/putStatusProduto";
 import { toast } from "sonner";
 import { PaginacaoProdutos } from "./PaginacaoProdutos";
+import { BuscaProdutos } from "./BuscaProdutos";
 
 
 export function TabelaProdutos() {
@@ -16,11 +17,15 @@ export function TabelaProdutos() {
     const [paginacao, setPaginacao] = useState<IPaginacaoProdutos>();
 
     const [paginaAtual, setPaginaAtual] = useState(1);
-    const [itensPorPagina, setItensPorPagina] = useState(10);
+    const [itensPorPagina, setItensPorPagina] = useState(5);
+
+    const [nomeProduto, setNomeProduto] = useState("");
+    const [generoMusical, setGeneroMusical] = useState("Todos");
+    const [statusProduto, setStatusProduto] = useState("Todos");
 
     useEffect(() => {
         carregarProdutos();
-    }, [paginaAtual, itensPorPagina]);
+    }, [paginaAtual, itensPorPagina, nomeProduto, generoMusical, statusProduto]);
 
     async function carregarProdutos(
         pagina: number = paginaAtual,
@@ -30,6 +35,9 @@ export function TabelaProdutos() {
             const response = await getProdutos({
                 paginaAtual: pagina,
                 itensPorPagina: itens,
+                nomeProduto: nomeProduto || undefined,
+                generoMusical: generoMusical === "Todos" ? undefined : generoMusical,
+                statusProduto: statusProduto === "Todos" ? undefined : statusProduto,
             });
 
             setPaginaAtual(pagina);
@@ -73,6 +81,14 @@ export function TabelaProdutos() {
 
     return (
         <Fragment>
+            <BuscaProdutos
+                nomeProduto={nomeProduto}
+                generoMusical={generoMusical}
+                statusProduto={statusProduto}
+                onNomeProdutoChange={setNomeProduto}
+                onGeneroMusicalChange={setGeneroMusical}
+                onStatusProdutoChange={setStatusProduto}
+            />
             <Table className="mt-5 overflow-hidden rounded-t-xl border border-[#2A2F3A] bg-fundoSecundaria">
                 <TableHeader className="bg-fundoTerciaria">
                     {table.getHeaderGroups().map((headerGroup) => (

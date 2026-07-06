@@ -68,7 +68,7 @@ export enum EnumStatusProduto {
   Ativo = "Ativo",
   Inativo = "Inativo",
   Esgotado = "Esgotado",
-  EmBreve = "EmBreve",
+  EmBreve = "Em Breve",
 }
 
 export enum EnumTipoArquivoProduto {
