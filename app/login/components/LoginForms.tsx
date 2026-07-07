@@ -30,7 +30,7 @@ export function LoginForms() {
             setSpinner(true);
             await login(dados);
             toast.success("Login realizado com sucesso!");
-            router.push("/produtos")
+            router.push("/produtoListagem")
         } catch (error) {
             if (error instanceof Error) {
                 toast.error(error.message);

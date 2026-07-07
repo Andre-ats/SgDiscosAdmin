@@ -2,7 +2,7 @@ export enum EnumEmbalagemProduto {
   Lacrado = "Lacrado",
   Aberto = "Aberto",
   Reembalado = "Reembalado",
-  SemEmbalagem = "SemEmbalagem",
+  SemEmbalagem = "Sem Embalagem",
 }
 
 export enum EnumFormatoProduto {

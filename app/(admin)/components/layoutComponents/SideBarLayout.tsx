@@ -17,12 +17,12 @@ export function SideBarLayout() {
         {
             nome: "Produtos",
             icone: Package,
-            rota: "/produtos",
+            rota: "/produtoListagem",
         },
         {
             nome: "Criar Produto",
             icone: Plus,
-            rota: "/criarProduto",
+            rota: "/produtoCriar",
         },
     ];
 

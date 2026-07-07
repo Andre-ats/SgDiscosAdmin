@@ -54,7 +54,7 @@ export function getColumns({
             accessorKey: "preco",
             header: "Preço",
             cell: ({ row }) => (
-                <p>R$ {row.original.precoProduto}</p>
+                <p>R$ {row.original.precoProduto.toFixed(2)}</p>
             )
         },
         {
