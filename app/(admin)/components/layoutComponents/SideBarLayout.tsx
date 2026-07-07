@@ -29,12 +29,12 @@ export function SideBarLayout() {
     return (
         <Fragment>
             <div className="m-2 flex items-center border-b border-[#2A2F3A] pb-3">
-                <Image className="absolute top-2" src={iconSgDiscosSemEscrita} alt="" width={45} height={45} />
+                <Image className="absolute top-2 left-4" src={iconSgDiscosSemEscrita} alt="" width={40} height={40} />
                 <div className="flex w-full justify-center mt-3">
-                    <CardDescription className="text-white flex text-2xl"><p className="text-primaria">SG</p>DISCOS</CardDescription>
+                    <CardDescription className="text-white flex text-2xl ml-4"><p className="text-primaria">SG</p>DISCOS</CardDescription>
                 </div>
             </div>
-            <div className="flex flex-col gap-3 mt-28 p-5">
+            <div className="flex flex-col gap-3 p-5">
                 {links.map((link) => {
                     const Icon = link.icone;
 
