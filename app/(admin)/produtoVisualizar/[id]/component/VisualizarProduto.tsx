@@ -39,26 +39,18 @@ export function VisualizarProduto() {
                     <VisualizacaoPrincipal produtos={produto} />
                 </div>
                 <div className="flex w-2/5 flex-col gap-6">
-                    <Card className="flex-1 gap-8 bg-fundoTerciaria p-6">
-                        <div className="justify-center">
-                            <Field>
-                                <FieldTitle className="text-white text-lg">Descrição</FieldTitle>
-                                <Textarea
-                                    spellCheck={false}
-                                    value={produto?.descricaoProduto}
-                                    maxLength={2000}
-                                    placeholder="Descreva o produto, faixas, edições, detalhes, etc."
-                                    className="w-full min-h-40 resize-none break-all text-white border-[#2A2F3A] disabled:bg-fundoTerciaria"
-                                    disabled
-                                />
+                    <Card className="h-80 bg-fundoTerciaria p-6 flex flex-col overflow-hidden">
+                        <Field className="flex flex-col flex-1 min-h-0">
+                            <FieldTitle className="text-white text-lg shrink-0">
+                                Descrição
+                            </FieldTitle>
 
-                                <div className="mt-2 flex justify-end">
-                                    <span className="text-sm text-zinc-400">
-                                        {produto?.descricaoProduto.length}/2000
-                                    </span>
-                                </div>
-                            </Field>
-                        </div>
+                            <div className="mt-3 flex-1 min-h-0 overflow-y-auto rounded-md border border-[#2A2F3A] p-3">
+                                <p className="text-sm leading-7 text-white whitespace-pre-line">
+                                    {produto?.descricaoProduto}
+                                </p>
+                            </div>
+                        </Field>
                     </Card>
                     <Card className="flex-1 bg-fundoTerciaria p-6">
                         <Field>
@@ -93,7 +85,7 @@ export function VisualizarProduto() {
                 </div>
             </div>
             <div className="mt-6">
-                <InformacoesGerais produtos={produto}/>
+                <InformacoesGerais produtos={produto} />
             </div>
         </Fragment>
     )
