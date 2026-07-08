@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { IProduto } from "@/api/produtos/typeProduto";
 import { getImagemUrl } from "@/api/urlImagem";
+import { Eye, Power, Search } from "lucide-react";
+import Link from "next/link";
 
 
 interface ColumnsProps {
@@ -65,19 +67,41 @@ export function getColumns({
             accessorKey: "statusProduto",
             header: "Status",
         },
+
         {
             id: "acoes",
             header: "Ações",
-            cell: ({ row }) => (
-                <div className="flex flex-col w-1/2">
-                    {row.original.statusProduto == "Inativo" &&
-                        <Button onClick={() => onMudarStatus(row.original)} className="p-5 bg-green-500 hover:bg-green-700 text-black cursor-pointer">Ativar</Button>
-                    }
-                    {row.original.statusProduto == "Ativo" &&
-                        <Button onClick={() => onMudarStatus(row.original)} className="p-5 bg-red-500 hover:bg-red-700 text-white cursor-pointer">Desativar</Button>
-                    }
-                </div>
-            ),
+            cell: ({ row }) => {
+                const ativo = row.original.statusProduto === "Ativo";
+
+                return (
+                    <div className="flex items-center gap-2">
+                        <Button
+                            asChild
+                            size="icon"
+                            variant="outline"
+                            className="h-9 w-9 border-[#2A2F3A] bg-fundoTerciaria text-white hover:bg-[#2A2F3A]"
+                        >
+                            <Button asChild size="icon">
+                                <Link href={`/produtoVisualizar/${row.original.id}`}>
+                                    <Eye />
+                                </Link>
+                            </Button>
+                        </Button>
+
+                        <Button
+                            size="icon"
+                            onClick={() => onMudarStatus(row.original)}
+                            className={`h-9 w-9 cursor-pointer ${ativo
+                                ? "bg-red-500 text-white hover:bg-red-700"
+                                : "bg-green-500 text-black hover:bg-green-700"
+                                }`}
+                        >
+                            <Power className="h-4 w-4" />
+                        </Button>
+                    </div>
+                );
+            },
         }
 
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
 
 import { InformacoesGerais } from "./InformacoesGerais";
@@ -16,6 +16,7 @@ import { postCriarProduto } from "@/api/produtos/postCriarProduto";
 import { postUploadArquivosProduto } from "@/api/produtos/postUploadArquivosProduto";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 
 export function CadastrarProdutos() {
 
@@ -37,47 +38,10 @@ export function CadastrarProdutos() {
     const [generosMusicaisProduto, setGenerosMusicaisProduto] = useState<EnumGeneroMusicalProduto[]>([]);
     const [imagens, setImagens] = useState<File[]>([]);
 
+    const [spinner, setSpinner] = useState(false)
+
     const router = useRouter();
 
-    useEffect(() => {
-        console.clear();
-
-        console.log({
-            nomeProduto,
-            nomeArtistaBanda,
-            descricao,
-            empresaGravadora,
-            origem,
-            anoLancamento,
-            codigoDeBarra,
-            embalagem,
-            status,
-            quantidadeProduto,
-            precoProduto,
-            formatoProduto,
-            tipoDeAlbum,
-            quantidadeDeCancoes,
-            generosMusicaisProduto,
-            imagens,
-        });
-    }, [
-        nomeProduto,
-        nomeArtistaBanda,
-        descricao,
-        empresaGravadora,
-        origem,
-        anoLancamento,
-        codigoDeBarra,
-        embalagem,
-        status,
-        quantidadeProduto,
-        precoProduto,
-        formatoProduto,
-        tipoDeAlbum,
-        quantidadeDeCancoes,
-        generosMusicaisProduto,
-        imagens,
-    ]);
 
     function removerImagem(index: number) {
         setImagens((prev) => prev.filter((_, i) => i !== index));
@@ -107,6 +71,8 @@ export function CadastrarProdutos() {
                 statusProduto: status as EnumStatusProduto,
             });
 
+            setSpinner(true);
+
             const produtoId = response.produto.id;
 
             if (imagens.length > 0) {
@@ -121,11 +87,23 @@ export function CadastrarProdutos() {
             } else {
                 toast.error("Erro ao criar produto.");
             }
+        } finally {
+            setSpinner(false);
         }
     }
 
     return (
         <>
+            {spinner &&
+                <Fragment>
+                    <div className="fixed inset-0 z-50 bg-black/60" />
+
+                    <Spinner
+                        color="white"
+                        className="fixed left-1/2 top-1/2 z-60 h-10 w-10 -translate-x-1/2 -translate-y-1/2"
+                    />
+                </Fragment>
+            }
             <div className="grid w-full grid-cols-1 items-stretch gap-4 xl:grid-cols-[2fr_1fr] mt-4">
                 <InformacoesGerais
                     nomeProduto={nomeProduto}

@@ -8,7 +8,7 @@ export default function ListagemLayout({
 
     return (
         <div className="flex min-h-screen bg-fundoPrimaria">
-            <aside className="w-64 border-r border-[#2A2F3A]">
+            <aside className="w-64 border-r border-[#2A2F3A] sticky top-0 h-screen">
                 <SideBarLayout/>
             </aside>
             <main className="flex-1 p-8">
