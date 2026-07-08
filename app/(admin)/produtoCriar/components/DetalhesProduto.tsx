@@ -41,7 +41,7 @@ export function DetalhesProduto({
             <Card className="h-full w-full bg-fundoTerciaria">
                 <CardHeader className="text-white">Detalhes do produto</CardHeader>
                 <div className="flex flex-row w-full justify-between">
-                    <CardContent className="flex flex-row justify-between w-full gap-5">
+                    <CardContent className="flex md:flex-row flex-col justify-between w-full gap-5">
                         <div className="w-full">
                             <Field>
                                 <FieldLabel className="text-white mt-5">Formato *</FieldLabel>

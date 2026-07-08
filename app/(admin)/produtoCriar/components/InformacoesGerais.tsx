@@ -101,7 +101,7 @@ export function InformacoesGerais({
                                     </span>
                                 </div>
                             </div>
-                            <div className="flex flex-row w-full justify-between gap-5">
+                            <div className="flex md:flex-row flex-col w-full justify-between gap-5">
                                 <div className="w-full">
                                     <FieldLabel className="text-white mt-5">Empresa / Gravadora *</FieldLabel>
                                     <InputGroup className="border-[#2A2F3A] mt-2">
@@ -146,8 +146,8 @@ export function InformacoesGerais({
                                     </InputGroup>
                                 </div>
                             </div>
-                            <div className="flex flex-row w-full justify-between gap-5">
-                                <div className="w-1/2">
+                            <div className="flex md:flex-row flex-col w-full justify-between gap-5">
+                                <div className="md:w-1/2 w-full">
                                     <FieldLabel className="text-white mt-5">Código de barra(EAN/UPC) *</FieldLabel>
                                     <InputGroup className="border-[#2A2F3A] mt-2">
                                         <InputGroupInput
@@ -160,7 +160,7 @@ export function InformacoesGerais({
                                         />
                                     </InputGroup>
                                 </div>
-                                <div className="w-1/2">
+                                <div className="md:w-1/2 w-full">
                                     <Field>
                                         <FieldLabel className="text-white mt-5">Embalagem *</FieldLabel>
                                         <Select value={embalagem} onValueChange={setEmbalagem}>

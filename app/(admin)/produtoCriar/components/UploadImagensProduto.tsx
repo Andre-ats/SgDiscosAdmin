@@ -21,7 +21,7 @@ export function UploadImagensProduto({ onDrop }: UploadImagensProdutoProps) {
     <div
       {...getRootProps()}
       className={`
-        flex  cursor-pointer flex-col items-center justify-center
+        flex  cursor-pointer flex-col items-center justify-center py-30 md:p-0
         rounded-xl border-2 border-dashed border-[#2A2F3A]
         bg-fundoTerciaria transition
         ${isDragActive ? "border-primaria" : ""}
