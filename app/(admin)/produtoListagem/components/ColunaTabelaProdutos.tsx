@@ -38,8 +38,8 @@ export function getColumns({
                             className="rounded-md object-cover"
                         />
                         <div className="flex flex-col">
-                            <span className="text-[16px] max-w-50 truncate">{row.original.nomeProduto}</span>
-                            <span className="text-[12px] max-w-50 truncate">{row.original.nomeArtistaBandaProduto}</span>
+                            <span className="text-[16px] max-w-33 xl:max-w-40 truncate">{row.original.nomeProduto}</span>
+                            <span className="text-[12px] max-w-33 xl:max-w-40 truncate">{row.original.nomeArtistaBandaProduto}</span>
                         </div>
                     </div>
                 )

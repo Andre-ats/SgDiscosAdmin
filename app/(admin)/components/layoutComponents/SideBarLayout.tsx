@@ -33,9 +33,9 @@ export function SideBarLayout() {
     return (
         <div className="flex h-screen flex-col">
             <div>
-                <div className="m-2 flex items-center border-b border-[#2A2F3A] pb-3">
+                <div className="m-2 flex items-center lg:border-b lg:border-[#2A2F3A] pb-3">
                     <Image
-                        className="absolute top-2 left-4"
+                        className="absolute top-2 lg:left-4 left-7"
                         src={iconSgDiscosSemEscrita}
                         alt=""
                         width={40}
@@ -43,13 +43,13 @@ export function SideBarLayout() {
                     />
 
                     <div className="flex w-full justify-center mt-3">
-                        <CardDescription className="text-white flex text-2xl ml-4">
+                        <CardDescription className="text-white text-2xl ml-4 hidden lg:flex">
                             <p className="text-primaria">SG</p>DISCOS
                         </CardDescription>
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-3 p-5">
+                <div className="flex flex-col gap-3 p-5 mt-10 lg:mt-0">
                     {links.map((link) => {
                         const Icon = link.icone;
 
@@ -62,7 +62,7 @@ export function SideBarLayout() {
                                         }`}
                                 >
                                     <Icon className="h-5 w-5" />
-                                    {link.nome}
+                                    <p className="hidden lg:block">{link.nome}</p>
                                 </Button>
                             </Link>
                         );
@@ -72,22 +72,22 @@ export function SideBarLayout() {
 
             <div className="mt-auto border-t border-[#2A2F3A] p-5">
                 <div className="mb-3 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-fundoTerciaria text-white">
+                    <div className="h-10 w-10 items-center justify-center rounded-full bg-fundoTerciaria text-white lg:flex hidden">
                         <User className="h-5 w-5" />
                     </div>
 
                     <div className="flex flex-col">
-                        <span className="text-sm font-medium text-white">Admin</span>
-                        <span className="text-xs text-zinc-400">Painel administrativo</span>
+                        <span className="text-sm font-medium text-white hidden lg:block">Admin</span>
+                        <span className="text-xs text-zinc-400 hidden lg:block">Painel administrativo</span>
                     </div>
                 </div>
 
                 <Button
                     onClick={sairConta}
-                    className="w-full justify-start gap-3 bg-transparent text-white hover:bg-red-500 hover:text-white cursor-pointer"
+                    className="w-full justify-center lg:justify-start gap-3 bg-transparent text-white hover:bg-red-500 hover:text-white cursor-pointer"
                 >
                     <LogOut className="h-5 w-5" />
-                    Sair da conta
+                    <p className="hidden lg:block">Sair da conta</p>
                 </Button>
             </div>
         </div>
