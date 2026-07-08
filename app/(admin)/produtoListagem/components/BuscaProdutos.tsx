@@ -23,7 +23,7 @@ export function BuscaProdutos({
     onStatusProdutoChange,
 }: BuscaProdutosProps) {
     return (
-        <FieldGroup className="mt-4 grid grid-cols-3 gap-3 ">
+        <FieldGroup className="mt-4 grid md:grid-cols-3 gap-3 ">
             <Field>
                 <InputGroup className="border-[#2A2F3A] bg-fundoTerciaria py-6">
                     <InputGroupAddon>

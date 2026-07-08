@@ -89,47 +89,50 @@ export function TabelaProdutos() {
                 onGeneroMusicalChange={setGeneroMusical}
                 onStatusProdutoChange={setStatusProduto}
             />
-            <Table className="mt-5 overflow-hidden rounded-t-xl border border-[#2A2F3A] bg-fundoSecundaria">
-                <TableHeader className="bg-fundoTerciaria">
-                    {table.getHeaderGroups().map((headerGroup) => (
-                        <TableRow key={headerGroup.id} className="border-[#2A2F3A] hover:bg-fundoTerciaria">
-                            {headerGroup.headers.map((header) => (
-                                <TableHead
-                                    className="h-14 text-sm font-semibold text-white p-5"
-                                    key={header.id}
-                                >
-                                    {flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext()
-                                    )}
-                                </TableHead>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableHeader>
 
-                <TableBody>
-                    {table.getRowModel().rows.map((row) => (
-                        <TableRow
-                            className="border-[#2A2F3A] bg-fundoSecundaria hover:bg-fundoTerciaria"
-                            key={row.id}
-                        >
-                            {row.getVisibleCells().map((cell) => (
-                                <TableCell
-                                    className="p-5 text-sm text-[#F5F7FA]"
-                                    key={cell.id}
-                                >
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext()
-                                    )}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    ))}
+            <div className="mt-5 w-full overflow-x-auto rounded-t-xl border border-[#2A2F3A] bg-fundoSecundaria">
+                <Table className="min-w-200">
+                    <TableHeader className="bg-fundoTerciaria">
+                        {table.getHeaderGroups().map((headerGroup) => (
+                            <TableRow key={headerGroup.id} className="border-[#2A2F3A] hover:bg-fundoTerciaria">
+                                {headerGroup.headers.map((header) => (
+                                    <TableHead
+                                        className="h-14 p-5 text-sm font-semibold text-white"
+                                        key={header.id}
+                                    >
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                    </TableHead>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableHeader>
 
-                </TableBody>
-            </Table>
+                    <TableBody>
+                        {table.getRowModel().rows.map((row) => (
+                            <TableRow
+                                className="border-[#2A2F3A] bg-fundoSecundaria hover:bg-fundoTerciaria"
+                                key={row.id}
+                            >
+                                {row.getVisibleCells().map((cell) => (
+                                    <TableCell
+                                        className="p-5 text-sm text-[#F5F7FA]"
+                                        key={cell.id}
+                                    >
+                                        {flexRender(
+                                            cell.column.columnDef.cell,
+                                            cell.getContext()
+                                        )}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </div>
+
             <div className="w-full">
                 <PaginacaoProdutos
                     paginacao={paginacao}

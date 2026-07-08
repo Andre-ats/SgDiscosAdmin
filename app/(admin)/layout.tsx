@@ -7,12 +7,15 @@ export default function ListagemLayout({
 }) {
 
     return (
-        <div className="flex min-h-screen bg-fundoPrimaria">
-            <aside className="lg:w-64 w-fit border-r border-[#2A2F3A] sticky top-0 h-screen lg:block">
-                <SideBarLayout/>
+        <div className="flex min-h-screen w-full bg-fundoPrimaria">
+            <aside className="fixed left-0 top-0 h-screen w-22.5 lg:w-65 bg-fundoSecundaria border-r border-[#2A2F3A]">
+                <SideBarLayout />
             </aside>
-            <main className="flex-1 p-8">
-                {children}
+
+            <main className="min-h-screen w-full pl-22.5 lg:pl-65 bg-fundoPrimaria">
+                <div className="w-full overflow-x-auto p-5">
+                    {children}
+                </div>
             </main>
         </div>
     );
