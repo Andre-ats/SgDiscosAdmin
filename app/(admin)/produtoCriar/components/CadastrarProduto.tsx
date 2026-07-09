@@ -17,6 +17,8 @@ import { postUploadArquivosProduto } from "@/api/produtos/postUploadArquivosProd
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
+import { getProdutoExterno, IResponseGetProdutoExterno } from "@/api/externa/musicbrainz/getProdutoExterno";
+import { getPais } from "@/app/funcoes/PaisesFuncoes";
 
 export function CadastrarProdutos() {
 
@@ -38,9 +40,59 @@ export function CadastrarProdutos() {
     const [generosMusicaisProduto, setGenerosMusicaisProduto] = useState<EnumGeneroMusicalProduto[]>([]);
     const [imagens, setImagens] = useState<File[]>([]);
 
+    const [produtoApiExterna, setProdutoApiExterna] = useState<IResponseGetProdutoExterno | null>()
+
     const [spinner, setSpinner] = useState(false)
 
     const router = useRouter();
+
+    async function handleApiExternaProduto(barcode: string) {
+        try {
+            setSpinner(true);
+
+            const produto = await getProdutoExterno(barcode);
+
+            console.log(produto);
+
+            if (!produto) {
+                toast.error("Produto não encontrado.");
+                return;
+            }
+
+            setNomeProduto(produto.title ?? "");
+
+            setNomeArtistaBanda(
+                produto["artist-credit"]
+                    ?.map((x) => x.name)
+                    .join(", ") ?? ""
+            );
+
+            setEmpresaGravadora(
+                produto["label-info"]
+                    ?.map((x) => x.label?.name)
+                    .join(" / ") ?? ""
+            );
+
+            setOrigem(getPais(produto.country));
+
+            setAnoLancamento(
+                produto.date
+                    ? Number(produto.date.substring(0, 4))
+                    : undefined
+            );
+
+            setCodigoDeBarra(barcode);
+
+            setQuantidadeDeCancoes(produto["track-count"] ?? undefined);
+
+            toast.success("Produto encontrado.");
+        } catch (error) {
+            console.error(error);
+            toast.error("Erro ao buscar produto.");
+        } finally {
+            setSpinner(false);
+        }
+    }
 
 
     function removerImagem(index: number) {
@@ -122,8 +174,8 @@ export function CadastrarProdutos() {
                     setCodigoDeBarra={setCodigoDeBarra}
                     embalagem={embalagem}
                     setEmbalagem={setEmbalagem}
+                    handleApiExternaProduto={handleApiExternaProduto}
                 />
-
                 <div className="flex h-full w-full flex-col gap-4">
                     <StatusEDisponibilidade
                         statusProduto={status}

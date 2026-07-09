@@ -1,11 +1,13 @@
 "use client";
 
 import { EnumEmbalagemProduto } from "@/api/produtos/typeProduto";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Search } from "lucide-react";
 import { useState } from "react";
 import { Fragment } from "react/jsx-runtime";
 
@@ -33,6 +35,8 @@ interface InformacoesGeraisProps {
 
     embalagem: string;
     setEmbalagem: (value: string) => void;
+
+    handleApiExternaProduto: (barcode: string)=>Promise<void>
 }
 
 export function InformacoesGerais({
@@ -52,6 +56,7 @@ export function InformacoesGerais({
     setCodigoDeBarra,
     embalagem,
     setEmbalagem,
+    handleApiExternaProduto
 }: InformacoesGeraisProps) {
     return (
         <Fragment>
@@ -158,6 +163,7 @@ export function InformacoesGerais({
                                             placeholder="Ex.: 0123456789123"
                                             required
                                         />
+                                        <Button onClick={()=>handleApiExternaProduto(codigoDeBarra)} className="bg-primaria text-black hover:bg-[#ffcf0d]">Buscar<Search/></Button>
                                     </InputGroup>
                                 </div>
                                 <div className="md:w-1/2 w-full">
