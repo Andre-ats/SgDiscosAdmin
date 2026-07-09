@@ -1,3 +1,5 @@
+import { TokenJwtDecode } from "@/app/funcoes/TokenJwtDecode";
+
 export interface ILogin {
     login: string
     senha: string
@@ -21,7 +23,10 @@ export async function login(props: ILogin) {
         throw new Error(data.error ?? "Erro ao realizar login.");
     }
 
+    const role: any = TokenJwtDecode(data.token)
+
     localStorage.setItem("token", data.token);
+    localStorage.setItem("role", role.role);
 
     return data;
 }

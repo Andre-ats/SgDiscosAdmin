@@ -1,6 +1,14 @@
 import { IProduto } from "./typeProduto";
 
 export async function getProdutoById(id?: string): Promise<IProduto> {
+
+    if (localStorage.getItem("role") !== "Admin") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+
+        window.location.href = "/login";
+    }
+
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/Produto/ListarProdutosById?ProdutoId=${id}`,
         {

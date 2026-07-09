@@ -4,6 +4,13 @@ export async function getProdutos(
     filtros?: IGetProdutosInput
 ): Promise<IListagemProdutosResponse> {
 
+    if (localStorage.getItem("role") !== "Admin") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+
+        window.location.href = "/login";
+    }
+
     const params = new URLSearchParams();
 
     if (filtros?.paginaAtual)

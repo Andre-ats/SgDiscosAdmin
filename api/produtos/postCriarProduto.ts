@@ -1,30 +1,31 @@
 import {
-    EnumEmbalagemProduto,
-    EnumFormatoProduto,
-    EnumGeneroMusicalProduto,
-    EnumStatusProduto,
-    EnumTipoDeAlbum,
+  EnumEmbalagemProduto,
+  EnumFormatoProduto,
+  EnumGeneroMusicalProduto,
+  EnumStatusProduto,
+  EnumTipoDeAlbum,
 } from "./typeProduto";
 
 export interface ICriarProdutoInput {
-    nomeProduto: string;
-    nomeArtistaBandaProduto: string;
-    descricaoProduto: string;
-    empresaProduto: string;
-    origemProduto: string;
-    anoLancamentoProduto: number;
-    codigoBarra: string;
-    embalagemProduto: EnumEmbalagemProduto;
-    formatoProduto: EnumFormatoProduto;
-    tipoDeAlbum: EnumTipoDeAlbum;
-    generosMusicaisProduto: EnumGeneroMusicalProduto[];
-    quantidadeDeCancoesProduto: number;
-    quantidadeProduto: number;
-    precoProduto: number;
-    statusProduto: EnumStatusProduto;
+  nomeProduto: string;
+  nomeArtistaBandaProduto: string;
+  descricaoProduto: string;
+  empresaProduto: string;
+  origemProduto: string;
+  anoLancamentoProduto: number;
+  codigoBarra: string;
+  embalagemProduto: EnumEmbalagemProduto;
+  formatoProduto: EnumFormatoProduto;
+  tipoDeAlbum: EnumTipoDeAlbum;
+  generosMusicaisProduto: EnumGeneroMusicalProduto[];
+  quantidadeDeCancoesProduto: number;
+  quantidadeProduto: number;
+  precoProduto: number;
+  statusProduto: EnumStatusProduto;
 }
 
 export async function postCriarProduto(body: ICriarProdutoInput) {
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/Produto/CadastrarProduto`,
     {
@@ -45,6 +46,13 @@ export async function postCriarProduto(body: ICriarProdutoInput) {
     data = text ? JSON.parse(text) : null;
   } catch {
     data = text;
+  }
+
+  if (response.status === 401) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+
+    window.location.replace("/login");
   }
 
   if (!response.ok) {

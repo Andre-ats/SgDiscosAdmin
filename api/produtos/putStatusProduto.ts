@@ -21,6 +21,13 @@ export async function putStatusProduto(
 
   const text = await response.text();
 
+  if (response.status === 401) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+
+    window.location.replace("/login");
+  }
+
   if (!response.ok) {
     throw new Error(text || "Erro ao alterar o status do produto.");
   }
