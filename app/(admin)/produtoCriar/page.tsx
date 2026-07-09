@@ -2,6 +2,11 @@ import { CardDescription, CardTitle } from "@/components/ui/card";
 import { Fragment } from "react/jsx-runtime";
 import { CadastrarProdutos } from "./components/CadastrarProduto";
 import { DetalhesProduto } from "./components/DetalhesProduto";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Criar Produto | SGDiscos",
+};
 
 export default function produtoCadastrar() {
     return (

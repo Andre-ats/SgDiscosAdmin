@@ -47,6 +47,11 @@ export function CadastrarProdutos() {
     const router = useRouter();
 
     async function handleApiExternaProduto(barcode: string) {
+        if(barcode.length < 1){
+            toast.error("Código de barra não pode ser nulo.")
+            return
+        }
+
         try {
             setSpinner(true);
 

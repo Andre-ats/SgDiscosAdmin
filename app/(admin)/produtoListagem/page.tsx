@@ -4,6 +4,11 @@ import { Plus } from "lucide-react";
 import { Fragment } from "react/jsx-runtime";
 import { TabelaProdutos } from "./components/TabelaProdutos";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Produto Listagem | SGDiscos",
+};
 
 export default function ListagemProduto() {
     return (

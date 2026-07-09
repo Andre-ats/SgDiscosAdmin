@@ -1,9 +1,18 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Montserrat } from "next/font/google";
 import { Toaster } from "sonner";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "SGDiscos",
+  icons: {
+    icon: "/Icon/logoSgDiscosSemEscrita.png",
+    shortcut: "/Icon/logoSgDiscosSemEscrita.png",
+    apple: "/Icon/logoSgDiscosSemEscrita.png",
+  },
+};
 
 const montserrat = Montserrat({
   subsets: ["latin"],
