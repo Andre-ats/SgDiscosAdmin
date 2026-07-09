@@ -8,8 +8,8 @@ import { useState } from "react";
 import { Fragment } from "react/jsx-runtime";
 
 interface PrecoProdutoProps {
-    precoProduto: number | undefined;
-    setPrecoProduto: (value: number | undefined) => void;
+    precoProduto: string | undefined;
+    setPrecoProduto: (value: string) => void;
 }
 
 export function PrecoProduto({
@@ -30,15 +30,15 @@ export function PrecoProduto({
                                 <Banknote />
                             </InputGroupAddon>
                             <InputGroupInput
-                                value={precoProduto ?? ""}
-                                onChange={(e) =>
-                                    setPrecoProduto(
-                                        e.target.value === "" ? undefined : Number(e.target.value)
-                                    )
-                                }
+                                type="text"
+                                inputMode="decimal"
+                                placeholder="Ex.: 19,90"
+                                value={precoProduto}
+                                onChange={(e) => {
+                                    const valor = e.target.value.replace(/[^0-9,]/g, "");
+                                    setPrecoProduto(valor);
+                                }}
                                 className="text-white border-[#2A2F3A]"
-                                type="number"
-                                placeholder="Ex.: 0,00"
                                 required
                             />
                         </InputGroup>

@@ -56,7 +56,12 @@ export function getColumns({
             accessorKey: "preco",
             header: "Preço",
             cell: ({ row }) => (
-                <p>R$ {row.original.precoProduto.toFixed(2)}</p>
+                <p>
+                    {row.original.precoProduto.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                    })}
+                </p>
             )
         },
         {

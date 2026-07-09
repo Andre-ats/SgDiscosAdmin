@@ -33,7 +33,7 @@ export function CadastrarProdutos() {
     const [status, setStatus] = useState("")
     const [quantiaCancoes, setQuantiaCancoes] = useState<number>()
     const [quantidadeProduto, setQuantidadeProduto] = useState<number>();
-    const [precoProduto, setPrecoProduto] = useState<number>();
+    const [precoProduto, setPrecoProduto] = useState("");
     const [formatoProduto, setFormatoProduto] = useState("");
     const [tipoDeAlbum, setTipoDeAlbum] = useState("");
     const [quantidadeDeCancoes, setQuantidadeDeCancoes] = useState<number>();
@@ -124,7 +124,7 @@ export function CadastrarProdutos() {
                 generosMusicaisProduto,
                 quantidadeDeCancoesProduto: quantidadeDeCancoes!,
                 quantidadeProduto: quantidadeProduto!,
-                precoProduto: precoProduto!,
+                precoProduto: Number(precoProduto!.replace(",", ".")),
                 statusProduto: status as EnumStatusProduto,
             });
 
