@@ -35,7 +35,7 @@ export function SideBarLayout() {
             <div>
                 <div className="m-2 flex items-center lg:border-b lg:border-[#2A2F3A] pb-3">
                     <Image
-                        className="absolute top-2 lg:left-4 left-7"
+                        className="absolute top-2 lg:left-4 left-6"
                         src={iconSgDiscosSemEscrita}
                         alt=""
                         width={40}
