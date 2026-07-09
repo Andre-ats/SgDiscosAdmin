@@ -56,7 +56,7 @@ export function SideBarLayout() {
                         return (
                             <Link key={link.rota} href={link.rota}>
                                 <Button
-                                    className={`w-full md:justify-start justify-center p-5 gap-3 cursor-pointer ${pathname === link.rota
+                                    className={`w-full lg:justify-start justify-center p-5 gap-3 cursor-pointer ${pathname === link.rota
                                             ? "bg-primaria text-black hover:bg-[#ffcf0d]"
                                             : "bg-transparent text-white hover:bg-[#2A2F3A]"
                                         }`}

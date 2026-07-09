@@ -5,6 +5,7 @@ import { Fragment } from "react/jsx-runtime";
 import { TabelaProdutos } from "./components/TabelaProdutos";
 import Link from "next/link";
 import { Metadata } from "next";
+import LoadingProdutoListagem from "./loading";
 
 export const metadata: Metadata = {
     title: "Produto Listagem | SGDiscos",
