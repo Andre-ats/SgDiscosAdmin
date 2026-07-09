@@ -2,7 +2,7 @@ export enum EnumEmbalagemProduto {
   Lacrado = "Lacrado",
   Aberto = "Aberto",
   Reembalado = "Reembalado",
-  SemEmbalagem = "Sem Embalagem",
+  SemEmbalagem = "SemEmbalagem",
 }
 
 export enum EnumFormatoProduto {
@@ -68,7 +68,7 @@ export enum EnumStatusProduto {
   Ativo = "Ativo",
   Inativo = "Inativo",
   Esgotado = "Esgotado",
-  EmBreve = "Em Breve",
+  EmBreve = "EmBreve",
 }
 
 export enum EnumTipoArquivoProduto {

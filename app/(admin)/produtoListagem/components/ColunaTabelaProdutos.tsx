@@ -4,7 +4,7 @@ import {
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { IProduto } from "@/api/produtos/typeProduto";
+import { EnumStatusProduto, IProduto } from "@/api/produtos/typeProduto";
 import { getImagemUrl } from "@/api/urlImagem";
 import { Eye, Power, Search } from "lucide-react";
 import Link from "next/link";
@@ -66,6 +66,22 @@ export function getColumns({
         {
             accessorKey: "statusProduto",
             header: "Status",
+            cell: ({ row }) => {
+                const coresStatus = {
+                    [EnumStatusProduto.Ativo]: "bg-green-500 text-black",
+                    [EnumStatusProduto.Inativo]: "bg-red-500 text-white",
+                    [EnumStatusProduto.Esgotado]: "bg-orange-500 text-white",
+                    [EnumStatusProduto.EmBreve]: "bg-blue-500 text-white",
+                };
+
+                return (
+                    <p
+                        className={`w-fit rounded-xl p-2 ${coresStatus[row.original.statusProduto]}`}
+                    >
+                        {row.original.statusProduto}
+                    </p>
+                );
+            }
         },
 
         {
