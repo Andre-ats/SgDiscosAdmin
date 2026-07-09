@@ -50,7 +50,7 @@ export function CarouselImages({ arquivos = [] }: ICarouselImages) {
                 <CarouselContent>
                     {arquivos.map((item, index) => (
                         <CarouselItem key={index}>
-                            <div className="relative h-95 w-95 overflow-hidden rounded-xl bg-fundoSecundaria">
+                            <div className="relative sm:h-95 sm:w-95 h-50 w-50 overflow-hidden rounded-xl bg-fundoSecundaria">
                                 <Image
                                     src={getImagemUrl(item.publicId, item.tipoArquivoProduto)}
                                     alt="Imagem do produto"
@@ -64,7 +64,7 @@ export function CarouselImages({ arquivos = [] }: ICarouselImages) {
                 </CarouselContent>
             </Carousel>
 
-            <Carousel className="mt-4 w-95">
+            <Carousel className="mt-4 w-95 sm:block hidden">
                 <CarouselContent className="gap-3">
                     {arquivos.map((item, index) => (
                         <CarouselItem key={index} className="basis-12 m-1">

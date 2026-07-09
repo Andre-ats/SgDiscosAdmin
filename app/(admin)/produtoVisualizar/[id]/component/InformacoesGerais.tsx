@@ -15,7 +15,7 @@ export function InformacoesGerais(props: IInformacoesGeraisProps) {
                 </FieldTitle>
 
                 <div className="mt-6 border-t border-[#2A2F3A]">
-                    <div className="grid grid-cols-3 gap-8 py-4">
+                    <div className="grid sm:grid-cols-3 gap-8 py-4">
                         <div>
                             <p className="text-xs text-zinc-400">
                                 Gravadora
@@ -49,7 +49,7 @@ export function InformacoesGerais(props: IInformacoesGeraisProps) {
 
                     <div className="border-t border-[#2A2F3A]"></div>
 
-                    <div className="grid grid-cols-3 gap-8 py-4">
+                    <div className="grid sm:grid-cols-3 gap-8 py-4">
                         <div>
                             <p className="text-xs text-zinc-400">
                                 Código de barras (EAN/UPC)

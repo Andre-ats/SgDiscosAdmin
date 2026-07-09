@@ -34,11 +34,11 @@ export function VisualizarProduto() {
                     <CardDescription className="mt-2 text-gray-400 text-sm">Visualize os campos do seu produto.</CardDescription>
                 </div>
             </div>
-            <div className="w-full flex flex-row gap-5 mt-4">
-                <div className="w-3/5">
+            <div className="w-full flex lg:flex-row flex-col gap-5 mt-4">
+                <div className="lg:w-3/5 w-full">
                     <VisualizacaoPrincipal produtos={produto} />
                 </div>
-                <div className="flex w-2/5 flex-col gap-6">
+                <div className="flex lg:w-2/5 w-full flex-col gap-6">
                     <Card className="h-80 bg-fundoTerciaria p-6 flex flex-col overflow-hidden">
                         <Field className="flex flex-col flex-1 min-h-0">
                             <FieldTitle className="text-white text-lg shrink-0">
@@ -59,21 +59,21 @@ export function VisualizarProduto() {
                             </FieldTitle>
 
                             <div className="divide-y divide-[#2A2F3A]">
-                                <div className="grid grid-cols-2 py-4">
+                                <div className="grid md:grid-cols-2 py-4">
                                     <span className="text-sm text-zinc-400">Formato</span>
                                     <span className="text-sm font-medium text-white">
                                         {produto?.formatoProduto}
                                     </span>
                                 </div>
 
-                                <div className="grid grid-cols-2 py-4">
+                                <div className="grid md:grid-cols-2 py-4">
                                     <span className="text-sm text-zinc-400">Tipo de álbum</span>
                                     <span className="text-sm font-medium text-white">
                                         {produto?.tipoDeAlbum}
                                     </span>
                                 </div>
 
-                                <div className="grid grid-cols-2 py-4">
+                                <div className="grid md:grid-cols-2 py-4">
                                     <span className="text-sm text-zinc-400">Quantidade de canções</span>
                                     <span className="text-sm font-medium text-white">
                                         {produto?.quantidadeDeCancoesProduto}

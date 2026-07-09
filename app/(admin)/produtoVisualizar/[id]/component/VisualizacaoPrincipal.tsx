@@ -12,7 +12,7 @@ interface IVisualizacaoPrincipal {
 export function VisualizacaoPrincipal(props: IVisualizacaoPrincipal) {
     return (
         <Fragment>
-            <Card className="grid h-full gap-8 bg-fundoTerciaria p-6 lg:grid-cols-[420px_1fr]">
+            <Card className="grid h-full gap-8 bg-fundoTerciaria p-6 2xl:grid-cols-[420px_1fr]">
                 <CarouselImages arquivos={props.produtos?.arquivosProdutos} />
                 <div className="flex w-full flex-row items-stretch gap-5">
                     <Field>
