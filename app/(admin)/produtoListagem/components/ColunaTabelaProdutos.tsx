@@ -8,6 +8,7 @@ import { EnumStatusProduto, IProduto } from "@/api/produtos/typeProduto";
 import { getImagemUrl } from "@/api/urlImagem";
 import { Eye, Power, Search } from "lucide-react";
 import Link from "next/link";
+import { Fragment } from "react/jsx-runtime";
 
 
 interface ColumnsProps {
@@ -76,15 +77,27 @@ export function getColumns({
                     [EnumStatusProduto.Ativo]: "bg-green-500 text-black",
                     [EnumStatusProduto.Inativo]: "bg-red-500 text-white",
                     [EnumStatusProduto.Esgotado]: "bg-orange-500 text-white",
-                    [EnumStatusProduto.EmBreve]: "bg-blue-500 text-white",
+                    [EnumStatusProduto.EmBreve]: "bg-orange-500 text-white",
                 };
 
                 return (
-                    <p
-                        className={`w-fit rounded-xl p-2 ${coresStatus[row.original.statusProduto]}`}
-                    >
-                        {row.original.statusProduto}
-                    </p>
+                    <Fragment>
+                        {row.original.statusProduto === EnumStatusProduto.Ativo ? (
+                            <p className="text-green-400 text-[11px] flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-400"></span> Em estoque</p>
+                        ) : row.original.statusProduto === EnumStatusProduto.Inativo ? (
+                            <p className="text-red-500 text-[11px] flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>Inativo</p>
+                        ) : row.original.statusProduto === EnumStatusProduto.Esgotado ? (
+                            <p className="text-red-500 text-[11px] flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>Esgotado</p>
+                        ) : row.original.statusProduto === EnumStatusProduto.EmBreve ? (
+                            <p className="text-orange-400 text-[11px] flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-orange-400"></span>Pré-venda</p>
+                        ) : (
+                            <p>{row.original.statusProduto}</p>
+                        )}
+                    </Fragment>
                 );
             }
         },
