@@ -19,6 +19,9 @@ interface DetalhesProdutoProps {
     quantidadeDeCancoes: number | undefined;
     setQuantidadeDeCancoes: (value: number | undefined) => void;
 
+    quantidadeDeDiscos: number | undefined;
+    setQuantidadeDeDiscos: (value: number | undefined) => void;
+
     generosMusicaisProduto: EnumGeneroMusicalProduto[];
     setGenerosMusicaisProduto: (
         value: EnumGeneroMusicalProduto[]
@@ -34,6 +37,8 @@ export function DetalhesProduto({
     setQuantidadeDeCancoes,
     generosMusicaisProduto,
     setGenerosMusicaisProduto,
+    quantidadeDeDiscos,
+    setQuantidadeDeDiscos
 }: DetalhesProdutoProps) {
 
     return (
@@ -109,11 +114,28 @@ export function DetalhesProduto({
                                 />
                             </InputGroup>
                         </div>
+                        <div className="w-full">
+                            <FieldLabel className="text-white mt-5">Quantidade de discos *</FieldLabel>
+                            <InputGroup className="border-[#2A2F3A] mt-2">
+                                <InputGroupInput
+                                    value={quantidadeDeDiscos ?? ""}
+                                    onChange={(e) =>
+                                        setQuantidadeDeDiscos(
+                                            e.target.value === "" ? undefined : Number(e.target.value)
+                                        )
+                                    }
+                                    className="text-white border-[#2A2F3A]"
+                                    type="text"
+                                    placeholder="Ex.: 2"
+                                    required
+                                />
+                            </InputGroup>
+                        </div>
                     </CardContent>
                 </div>
                 <CardContent className="flex flex-row justify-between w-full gap-5">
                     <div className="w-full">
-                        <FieldLabel className="text-white mt-5 mb-2">Quantidade de canções *</FieldLabel>
+                        <FieldLabel className="text-white mt-5 mb-2">Gêneros *</FieldLabel>
                         <MultiSelectGenero
                             value={generosMusicaisProduto}
                             onChange={setGenerosMusicaisProduto} />

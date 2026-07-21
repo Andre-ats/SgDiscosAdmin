@@ -1,4 +1,5 @@
 import {
+  EnumCondicao,
   EnumEmbalagemProduto,
   EnumFormatoProduto,
   EnumGeneroMusicalProduto,
@@ -14,12 +15,14 @@ export interface ICriarProdutoInput {
   origemProduto: string;
   anoLancamentoProduto: number;
   codigoBarra: string;
+  condicao: EnumCondicao
   embalagemProduto: EnumEmbalagemProduto;
   formatoProduto: EnumFormatoProduto;
   tipoDeAlbum: EnumTipoDeAlbum;
   generosMusicaisProduto: EnumGeneroMusicalProduto[];
   quantidadeDeCancoesProduto: number;
   quantidadeProduto: number;
+  quantidadeDiscos: number
   precoProduto: number;
   statusProduto: EnumStatusProduto;
 }

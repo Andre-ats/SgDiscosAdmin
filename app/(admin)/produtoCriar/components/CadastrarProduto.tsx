@@ -11,7 +11,7 @@ import { UploadImagensProduto } from "./UploadImagensProduto";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { EnumEmbalagemProduto, EnumFormatoProduto, EnumGeneroMusicalProduto, EnumStatusProduto, EnumTipoDeAlbum } from "@/api/produtos/typeProduto";
+import { EnumCondicao, EnumEmbalagemProduto, EnumFormatoProduto, EnumGeneroMusicalProduto, EnumStatusProduto, EnumTipoDeAlbum } from "@/api/produtos/typeProduto";
 import { postCriarProduto } from "@/api/produtos/postCriarProduto";
 import { postUploadArquivosProduto } from "@/api/produtos/postUploadArquivosProduto";
 import { toast } from "sonner";
@@ -30,17 +30,17 @@ export function CadastrarProdutos() {
     const [anoLancamento, setAnoLancamento] = useState<number>()
     const [codigoDeBarra, setCodigoDeBarra] = useState("")
     const [embalagem, setEmbalagem] = useState("")
+    const [condicao, setCondicao] = useState("")
     const [status, setStatus] = useState("")
-    const [quantiaCancoes, setQuantiaCancoes] = useState<number>()
     const [quantidadeProduto, setQuantidadeProduto] = useState<number>();
     const [precoProduto, setPrecoProduto] = useState("");
     const [formatoProduto, setFormatoProduto] = useState("");
     const [tipoDeAlbum, setTipoDeAlbum] = useState("");
     const [quantidadeDeCancoes, setQuantidadeDeCancoes] = useState<number>();
+    const [quantidadeDeDiscos, setQuantidadeDeDiscos] = useState<number>();
     const [generosMusicaisProduto, setGenerosMusicaisProduto] = useState<EnumGeneroMusicalProduto[]>([]);
     const [imagens, setImagens] = useState<File[]>([]);
 
-    const [produtoApiExterna, setProdutoApiExterna] = useState<IResponseGetProdutoExterno | null>()
 
     const [spinner, setSpinner] = useState(false)
 
@@ -118,12 +118,14 @@ export function CadastrarProdutos() {
                 origemProduto: origem,
                 anoLancamentoProduto: anoLancamento!,
                 codigoBarra: codigoDeBarra,
+                condicao: condicao as EnumCondicao,
                 embalagemProduto: embalagem as EnumEmbalagemProduto,
                 formatoProduto: formatoProduto as EnumFormatoProduto,
                 tipoDeAlbum: tipoDeAlbum as EnumTipoDeAlbum,
                 generosMusicaisProduto,
                 quantidadeDeCancoesProduto: quantidadeDeCancoes!,
                 quantidadeProduto: quantidadeProduto!,
+                quantidadeDiscos: quantidadeDeDiscos!,
                 precoProduto: Number(precoProduto!.replace(",", ".")),
                 statusProduto: status as EnumStatusProduto,
             });
@@ -180,6 +182,8 @@ export function CadastrarProdutos() {
                     embalagem={embalagem}
                     setEmbalagem={setEmbalagem}
                     handleApiExternaProduto={handleApiExternaProduto}
+                    condicao={condicao}
+                    setCondicao={setCondicao}
                 />
                 <div className="flex h-full w-full flex-col gap-4">
                     <StatusEDisponibilidade
@@ -205,6 +209,8 @@ export function CadastrarProdutos() {
                     setQuantidadeDeCancoes={setQuantidadeDeCancoes}
                     generosMusicaisProduto={generosMusicaisProduto}
                     setGenerosMusicaisProduto={setGenerosMusicaisProduto}
+                    quantidadeDeDiscos={quantidadeDeDiscos}
+                    setQuantidadeDeDiscos={setQuantidadeDeDiscos}
                 />
             </div>
 

@@ -77,7 +77,7 @@ export function getColumns({
                     [EnumStatusProduto.Ativo]: "bg-green-500 text-black",
                     [EnumStatusProduto.Inativo]: "bg-red-500 text-white",
                     [EnumStatusProduto.Esgotado]: "bg-orange-500 text-white",
-                    [EnumStatusProduto.EmBreve]: "bg-orange-500 text-white",
+                    [EnumStatusProduto.PreVenda]: "bg-orange-500 text-white",
                 };
 
                 return (
@@ -91,7 +91,7 @@ export function getColumns({
                         ) : row.original.statusProduto === EnumStatusProduto.Esgotado ? (
                             <p className="text-red-500 text-[11px] flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>Esgotado</p>
-                        ) : row.original.statusProduto === EnumStatusProduto.EmBreve ? (
+                        ) : row.original.statusProduto === EnumStatusProduto.PreVenda ? (
                             <p className="text-orange-400 text-[11px] flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-orange-400"></span>Pré-venda</p>
                         ) : (

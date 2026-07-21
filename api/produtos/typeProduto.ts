@@ -66,7 +66,7 @@ export enum EnumStatusProduto {
   Ativo = "Ativo",
   Inativo = "Inativo",
   Esgotado = "Esgotado",
-  EmBreve = "PreVenda",
+  PreVenda = "PreVenda",
 }
 
 export enum EnumTipoArquivoProduto {
@@ -83,7 +83,7 @@ export enum EnumTipoDeAlbum {
   Deluxe = "Deluxe",
 }
 
-export enum EnumCodicao {
+export enum EnumCondicao {
   Novo = "Novo",
   Usado = "Usado"
 }

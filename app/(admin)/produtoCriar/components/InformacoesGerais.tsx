@@ -1,6 +1,6 @@
 "use client";
 
-import { EnumEmbalagemProduto } from "@/api/produtos/typeProduto";
+import { EnumCondicao, EnumEmbalagemProduto } from "@/api/produtos/typeProduto";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Field, FieldLabel } from "@/components/ui/field";
@@ -36,7 +36,10 @@ interface InformacoesGeraisProps {
     embalagem: string;
     setEmbalagem: (value: string) => void;
 
-    handleApiExternaProduto: (barcode: string)=>Promise<void>
+    condicao: string;
+    setCondicao: (value: string) => void;
+
+    handleApiExternaProduto: (barcode: string) => Promise<void>
 }
 
 export function InformacoesGerais({
@@ -56,7 +59,9 @@ export function InformacoesGerais({
     setCodigoDeBarra,
     embalagem,
     setEmbalagem,
-    handleApiExternaProduto
+    handleApiExternaProduto,
+    condicao, 
+    setCondicao
 }: InformacoesGeraisProps) {
     return (
         <Fragment>
@@ -163,8 +168,33 @@ export function InformacoesGerais({
                                             placeholder="Ex.: 0123456789123"
                                             required
                                         />
-                                        <Button onClick={()=>handleApiExternaProduto(codigoDeBarra)} className="bg-primaria text-black hover:bg-[#ffcf0d]">Buscar<Search/></Button>
+                                        <Button onClick={() => handleApiExternaProduto(codigoDeBarra)} className="bg-primaria text-black hover:bg-[#ffcf0d]">Buscar<Search /></Button>
                                     </InputGroup>
+                                </div>
+                                <div className="md:w-1/2 w-full">
+                                    <Field>
+                                        <FieldLabel className="text-white mt-5">Condição *</FieldLabel>
+                                        <Select value={condicao} onValueChange={setCondicao}>
+                                            <SelectTrigger className="w-full border-[#2A2F3A] bg-fundoTerciaria text-white">
+                                                <div className="flex flex-col items-start">
+                                                    <SelectValue placeholder="Condição..." />
+                                                </div>
+                                            </SelectTrigger>
+
+                                            <SelectContent align="start">
+                                                <SelectGroup>
+
+                                                    {Object.values(EnumCondicao)
+                                                        .sort((a, b) => a.localeCompare(b, "pt-BR"))
+                                                        .map((condicao) => (
+                                                            <SelectItem key={condicao} value={condicao}>
+                                                                {condicao}
+                                                            </SelectItem>
+                                                        ))}
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
+                                    </Field>
                                 </div>
                                 <div className="md:w-1/2 w-full">
                                     <Field>
