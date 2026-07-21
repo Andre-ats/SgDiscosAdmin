@@ -106,7 +106,7 @@ export interface IProduto {
   formatoProduto: EnumFormatoProduto;
   tipoDeAlbum: EnumTipoDeAlbum;
   statusProduto: EnumStatusProduto;
-  condicao: EnumCodicao;
+  condicao: EnumCondicao;
 
   generosMusicaisProduto: EnumGeneroMusicalProduto[];
   arquivosProdutos: IArquivoProduto[];
