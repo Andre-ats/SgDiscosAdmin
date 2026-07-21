@@ -3,7 +3,7 @@ import { Fragment } from "react/jsx-runtime";
 import { CarouselImages } from "./CarouselImages";
 import { IProduto } from "@/api/produtos/typeProduto";
 import { Field, FieldContent, FieldDescription, FieldTitle } from "@/components/ui/field";
-import { Barcode, CalendarDays, Disc3Icon, Package } from "lucide-react";
+import { Barcode, CalendarDays, Disc3Icon, Layers, Package, PackageCheckIcon, ShieldCheck } from "lucide-react";
 
 interface IVisualizacaoPrincipal {
     produtos?: IProduto
@@ -55,6 +55,14 @@ export function VisualizacaoPrincipal(props: IVisualizacaoPrincipal) {
                             <div className="flex items-center gap-2">
                                 <Barcode className="h-5 w-5 text-primaria" />
                                 {props.produtos?.codigoBarra}
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Layers className="h-5 w-5 text-primaria" />
+                                {props.produtos?.quantidadeDiscos}
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <ShieldCheck className="h-5 w-5 text-primaria" />
+                                {props.produtos?.condicao}
                             </div>
                         </div>
 

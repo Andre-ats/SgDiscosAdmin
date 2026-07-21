@@ -1,8 +1,6 @@
 export enum EnumEmbalagemProduto {
   Lacrado = "Lacrado",
-  Aberto = "Aberto",
-  Reembalado = "Reembalado",
-  SemEmbalagem = "SemEmbalagem",
+  Aberto = "Deslacrado",
 }
 
 export enum EnumFormatoProduto {
@@ -68,7 +66,7 @@ export enum EnumStatusProduto {
   Ativo = "Ativo",
   Inativo = "Inativo",
   Esgotado = "Esgotado",
-  EmBreve = "EmBreve",
+  EmBreve = "PreVenda",
 }
 
 export enum EnumTipoArquivoProduto {
@@ -81,9 +79,13 @@ export enum EnumTipoDeAlbum {
   EP = "EP",
   Single = "Single",
   Live = "Live",
-  Soundtrack = "Soundtrack",
   Remix = "Remix",
   Deluxe = "Deluxe",
+}
+
+export enum EnumCodicao {
+  Novo = "Novo",
+  Usado = "Usado"
 }
 
 export interface IArquivoProduto {
@@ -104,12 +106,14 @@ export interface IProduto {
   formatoProduto: EnumFormatoProduto;
   tipoDeAlbum: EnumTipoDeAlbum;
   statusProduto: EnumStatusProduto;
+  condicao: EnumCodicao;
 
   generosMusicaisProduto: EnumGeneroMusicalProduto[];
   arquivosProdutos: IArquivoProduto[];
 
   quantidadeDeCancoesProduto: number;
   quantidadeProduto: number;
+  quantidadeDiscos: number
   precoProduto: number;
   precoDescontoProduto: number;
 
@@ -131,14 +135,14 @@ export interface IPaginacaoProdutos {
 }
 
 export interface IGetProdutosInput {
-    paginaAtual?: number;
-    itensPorPagina?: number;
+  paginaAtual?: number;
+  itensPorPagina?: number;
 
-    nomeProduto?: string;
-    codigoBarra?: string;
+  nomeProduto?: string;
+  codigoBarra?: string;
 
-    generoMusical?: string;
-    formatoProduto?: string;
-    tipoDeAlbum?: string;
-    statusProduto?: string;
+  generoMusical?: string;
+  formatoProduto?: string;
+  tipoDeAlbum?: string;
+  statusProduto?: string;
 }

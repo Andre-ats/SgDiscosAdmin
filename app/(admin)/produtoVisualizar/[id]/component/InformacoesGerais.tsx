@@ -70,6 +70,16 @@ export function InformacoesGerais(props: IInformacoesGeraisProps) {
                             </p>
                         </div>
 
+                        <div>
+                            <p className="text-xs text-zinc-400">
+                                Condição do produto
+                            </p>
+
+                            <p className="mt-1 text-sm font-medium text-white">
+                                {props.produtos?.condicao}
+                            </p>
+                        </div>
+
                         <div />
                     </div>
                 </div>

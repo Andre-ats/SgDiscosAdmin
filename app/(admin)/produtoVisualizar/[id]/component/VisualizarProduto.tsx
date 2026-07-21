@@ -79,6 +79,13 @@ export function VisualizarProduto() {
                                         {produto?.quantidadeDeCancoesProduto}
                                     </span>
                                 </div>
+
+                                <div className="grid md:grid-cols-2 py-4">
+                                    <span className="text-sm text-zinc-400">Quantidade de discos</span>
+                                    <span className="text-sm font-medium text-white">
+                                        {produto?.quantidadeDiscos}
+                                    </span>
+                                </div>
                             </div>
                         </Field>
                     </Card>
