@@ -4,6 +4,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-primaria: #fcda54;
+  --color-fundoPrimaria:#0B0D12;
+  --color-fundoSecundaria:#171A21;
+  --color-fundoTerciaria:#1D212B;
+}
+
 
 @theme inline {
   --color-background: var(--background);
