@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { EnumStatusProduto, IProduto } from "@/api/produtos/typeProduto";
 import { getImagemUrl } from "@/api/urlImagem";
-import { Eye, Power, Search } from "lucide-react";
+import { Eye, Pencil, Power, Search } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react/jsx-runtime";
 
@@ -123,16 +123,16 @@ export function getColumns({
                             </Button>
                         </Button>
 
-                        <Button
-                            size="icon"
-                            onClick={() => onMudarStatus(row.original)}
-                            className={`h-9 w-9 cursor-pointer ${ativo
-                                ? "bg-red-500 text-white hover:bg-red-700"
-                                : "bg-green-500 text-black hover:bg-green-700"
-                                }`}
-                        >
-                            <Power className="h-4 w-4" />
-                        </Button>
+
+                        <Link href={`/produtoAtualizar/${row.original.id}`}>
+                            <Button
+                                size="icon"
+                                className="h-9 w-9 cursor-pointer border-[#2A2F3A] bg-primaria text-black hover:bg-[#ffcf0d]"
+                            >
+
+                                <Pencil />
+                            </Button>
+                        </Link>
                     </div>
                 );
             },

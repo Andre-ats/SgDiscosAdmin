@@ -7,7 +7,8 @@ import {
   EnumTipoDeAlbum,
 } from "./typeProduto";
 
-export interface ICriarProdutoInput {
+export interface IAtualizarProdutoInput {
+  id: string
   nomeProduto: string;
   nomeArtistaBandaProduto: string;
   descricaoProduto: string;
@@ -27,18 +28,18 @@ export interface ICriarProdutoInput {
   statusProduto: EnumStatusProduto;
 }
 
-export async function postCriarProduto(body: ICriarProdutoInput) {
+export async function putAtualizarProduto(body: IAtualizarProdutoInput) {
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/Produto/CadastrarProduto`,
+    `${process.env.NEXT_PUBLIC_API_URL}/Produto/UpdateProduto/UpdateProduto`,
     {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
-        criarProdutoDto: body,
+        produtoAtualizarDto: body,
       }),
     }
   );

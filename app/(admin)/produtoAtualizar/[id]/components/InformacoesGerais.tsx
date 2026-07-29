@@ -33,11 +33,11 @@ interface InformacoesGeraisProps {
     codigoDeBarra: string;
     setCodigoDeBarra: (value: string) => void;
 
-    embalagem: string;
-    setEmbalagem: (value: string) => void;
+    embalagem: EnumEmbalagemProduto | undefined;
+    setEmbalagem: (value: EnumEmbalagemProduto) => void;
 
-    condicao: string;
-    setCondicao: (value: string) => void;
+    condicao: EnumCondicao | undefined;
+    setCondicao: (value: EnumCondicao) => void;
 
     handleApiExternaProduto: (barcode: string) => Promise<void>
 }

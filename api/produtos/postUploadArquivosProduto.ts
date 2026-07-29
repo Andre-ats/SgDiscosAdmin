@@ -1,11 +1,12 @@
 export async function postUploadArquivosProduto(
   produtoId: string,
-  arquivos: File[]
+  arquivos: File[],
 ) {
   const formData = new FormData();
 
-  arquivos.forEach((arquivo) => {
+  arquivos.forEach((arquivo, index) => {
     formData.append("ArquivoLista", arquivo);
+    formData.append("Ordens", index.toString());
   });
 
   const response = await fetch(
