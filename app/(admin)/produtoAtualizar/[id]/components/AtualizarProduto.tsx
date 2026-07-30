@@ -11,7 +11,7 @@ import { UploadImagensProduto } from "./UploadImagensProduto";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { EnumCondicao, EnumEmbalagemProduto, EnumFormatoProduto, EnumGeneroMusicalProduto, EnumStatusProduto, EnumTipoDeAlbum, IProduto } from "@/api/produtos/typeProduto";
+import { EnumCondicao, EnumEmbalagemProduto, EnumFormatoProduto, EnumGeneroMusicalProduto, EnumStatusProduto, EnumTipoArquivoProduto, EnumTipoDeAlbum, IProduto } from "@/api/produtos/typeProduto";
 import { postCriarProduto } from "@/api/produtos/postCriarProduto";
 import { postUploadArquivosProduto } from "@/api/produtos/postUploadArquivosProduto";
 import { toast } from "sonner";
@@ -21,6 +21,8 @@ import { getProdutoExterno, IResponseGetProdutoExterno } from "@/api/externa/mus
 import { getPais } from "@/app/funcoes/PaisesFuncoes";
 import { getProdutoById } from "@/api/produtos/getProdutoById";
 import { putAtualizarProduto } from "@/api/produtos/putAtualizarProduto";
+import { getImagemUrl } from "@/api/urlImagem";
+import { deleteArquivosProduto, IArquivo } from "@/api/produtos/deleteArquivosProduto";
 
 export function AtualizarProduto() {
 
@@ -44,6 +46,10 @@ export function AtualizarProduto() {
     const [tipoDeAlbum, setTipoDeAlbum] = useState<EnumTipoDeAlbum>();
     const [quantidadeDeCancoes, setQuantidadeDeCancoes] = useState<number>();
     const [quantidadeDeDiscos, setQuantidadeDeDiscos] = useState<number>();
+
+    const [arquivosParaExcluir, setArquivosParaExcluir] = useState<
+        IArquivo[]
+    >([]);
 
     const [generosMusicaisProduto, setGenerosMusicaisProduto] = useState<
         EnumGeneroMusicalProduto[]
@@ -101,6 +107,40 @@ export function AtualizarProduto() {
         } finally {
             setSpinner(false);
         }
+    }
+
+    function removerImagemExistente(
+        publicId: string,
+        enumTipoArquivo: EnumTipoArquivoProduto
+    ) {
+        setArquivosParaExcluir((prev) => {
+            const arquivoJaAdicionado = prev.some(
+                (arquivo) => arquivo.publicId === publicId
+            );
+
+            if (arquivoJaAdicionado) {
+                return prev;
+            }
+
+            return [
+                ...prev,
+                {
+                    publicId,
+                    enumTipoArquivo,
+                },
+            ];
+        });
+
+        setProduto((prev) => {
+            if (!prev) return prev;
+
+            return {
+                ...prev,
+                arquivosProdutos: prev.arquivosProdutos.filter(
+                    (arquivo) => arquivo.publicId !== publicId
+                ),
+            };
+        });
     }
 
     async function handleApiExternaProduto(barcode: string) {
@@ -167,7 +207,9 @@ export function AtualizarProduto() {
 
     async function atualizarProduto() {
         try {
-            const response = await putAtualizarProduto({
+
+            setSpinner(true);
+            await putAtualizarProduto({
                 id: produto!.id,
                 nomeProduto,
                 nomeArtistaBandaProduto: nomeArtistaBanda,
@@ -188,19 +230,24 @@ export function AtualizarProduto() {
                 statusProduto: status as EnumStatusProduto,
             });
 
-            setSpinner(true);
+            if (arquivosParaExcluir.length > 0) {
+                await deleteArquivosProduto({
+                    produtoId: produto!.id,
+                    arquivo: arquivosParaExcluir,
+                });
+            }
 
             if (imagens.length > 0) {
                 await postUploadArquivosProduto(produto!.id, imagens);
             }
 
-            toast.success("Produto criado com sucesso!");
+            toast.success("Produto atualizado com sucesso!");
             router.push("/produtoListagem")
         } catch (error) {
             if (error instanceof Error) {
                 toast.error(error.message);
             } else {
-                toast.error("Erro ao criar produto.");
+                toast.error("Erro ao atualizar produto.");
             }
         } finally {
             setSpinner(false);
@@ -274,36 +321,32 @@ export function AtualizarProduto() {
                 <UploadImagensProduto onDrop={onDrop} />
 
                 <Card className="h-full min-h-90 w-full bg-fundoTerciaria">
-                    <CardHeader className="text-white">Arquivos enviados</CardHeader>
+                    <CardHeader className="text-white">Arquivos existentes</CardHeader>
 
                     <CardContent className="h-full">
                         <div className="flex h-full flex-col gap-3">
-                            {imagens.length === 0 ? (
+                            {produto?.arquivosProdutos.length === 0 ? (
                                 <div className="flex min-h-65 flex-1 items-center justify-center rounded-lg border border-dashed border-[#2A2F3A]">
                                     <p className="text-sm text-zinc-400">
-                                        Nenhum arquivo enviado.
+                                        Nenhum arquivo.
                                     </p>
                                 </div>
                             ) : (
-                                imagens.map((imagem, index) => (
+                                produto?.arquivosProdutos.map((imagem, index) => (
                                     <div
-                                        key={`${imagem.name}-${index}`}
+                                        key={`${imagem.publicId}-${index}`}
                                         className="flex items-center justify-between rounded-lg border border-[#2A2F3A] bg-fundoSecundaria p-2"
                                     >
                                         <div className="flex items-center gap-3">
                                             <img
-                                                src={URL.createObjectURL(imagem)}
-                                                alt={imagem.name}
+                                                src={getImagemUrl(imagem.publicId, imagem.tipoArquivoProduto)}
+                                                alt={imagem.publicId}
                                                 className="h-14 w-14 rounded-md object-cover"
                                             />
 
                                             <div className="flex flex-col">
                                                 <span className="max-w-48 truncate text-sm text-white">
-                                                    {imagem.name}
-                                                </span>
-
-                                                <span className="text-xs text-zinc-400">
-                                                    {(imagem.size / 1024 / 1024).toFixed(2)} MB
+                                                    Imagem {index + 1}
                                                 </span>
                                             </div>
                                         </div>
@@ -311,13 +354,61 @@ export function AtualizarProduto() {
                                         <Button
                                             variant="destructive"
                                             size="icon"
-                                            onClick={() => removerImagem(index)}
+                                            onClick={() =>
+                                                removerImagemExistente(
+                                                    imagem.publicId,
+                                                    imagem.tipoArquivoProduto
+                                                )
+                                            }
                                         >
                                             <Trash2 className="h-4 w-4" />
                                         </Button>
                                     </div>
                                 ))
                             )}
+                            <div>
+                                <CardHeader className="text-white">Arquivos enviados</CardHeader>
+                                {imagens.length === 0 ? (
+                                    <div className="flex min-h-65 flex-1 items-center justify-center rounded-lg border border-dashed border-[#2A2F3A]">
+                                        <p className="text-sm text-zinc-400">
+                                            Nenhum arquivo enviado.
+                                        </p>
+                                    </div>
+                                ) : (
+                                    imagens.map((imagem, index) => (
+                                        <div
+                                            key={`${imagem.name}-${index}`}
+                                            className="flex items-center justify-between rounded-lg border border-[#2A2F3A] bg-fundoSecundaria p-2"
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                <img
+                                                    src={URL.createObjectURL(imagem)}
+                                                    alt={imagem.name}
+                                                    className="h-14 w-14 rounded-md object-cover"
+                                                />
+
+                                                <div className="flex flex-col">
+                                                    <span className="max-w-48 truncate text-sm text-white">
+                                                        {imagem.name}
+                                                    </span>
+
+                                                    <span className="text-xs text-zinc-400">
+                                                        {(imagem.size / 1024 / 1024).toFixed(2)} MB
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <Button
+                                                variant="destructive"
+                                                size="icon"
+                                                onClick={() => removerImagem(index)}
+                                            >
+                                                <Trash2 className="h-4 w-4" />
+                                            </Button>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
                         </div>
                     </CardContent>
                 </Card>
