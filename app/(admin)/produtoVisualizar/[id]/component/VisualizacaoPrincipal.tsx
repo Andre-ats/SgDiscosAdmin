@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Fragment } from "react/jsx-runtime";
 import { CarouselImages } from "./CarouselImages";
-import { IProduto } from "@/api/produtos/typeProduto";
+import { EnumStatusProduto, IProduto } from "@/api/produtos/typeProduto";
 import { Field, FieldContent, FieldDescription, FieldTitle } from "@/components/ui/field";
 import { Barcode, CalendarDays, Disc3Icon, Layers, Package, PackageCheckIcon, ShieldCheck } from "lucide-react";
 
@@ -17,8 +17,41 @@ export function VisualizacaoPrincipal(props: IVisualizacaoPrincipal) {
                 <div className="flex w-full flex-row items-stretch gap-5">
                     <Field>
                         <div className="mb-4 flex items-center gap-3">
-                            <span className="rounded-full bg-primaria px-3 py-1 text-xs font-semibold text-black">
-                                {props.produtos?.statusProduto}
+                            <span className="rounded-full bg-gray-800 px-3 py-1 text-xs font-semibold text-black">
+                                {props.produtos?.statusProduto ===
+                                    EnumStatusProduto.Ativo ? (
+                                    <p className="flex items-center gap-1 text-[11px] text-green-400">
+                                        <span className="size-1.5 rounded-full bg-green-400" />
+
+                                        Em estoque
+                                    </p>
+                                ) : props.produtos?.statusProduto ===
+                                    EnumStatusProduto.Esgotado ? (
+                                    <p className="flex items-center gap-2 text-[11px] text-red-500">
+                                        <span className="size-1.5 rounded-full bg-red-500" />
+
+                                        Esgotado
+                                    </p>
+                                ) : props.produtos?.statusProduto ===
+                                    EnumStatusProduto.PreVenda ? (
+                                    <p className="flex items-center gap-2 text-[11px] text-orange-400">
+                                        <span className="size-1.5 rounded-full bg-orange-400" />
+
+                                        Pré-venda
+                                    </p>
+                                ) : props.produtos?.statusProduto ===
+                                    EnumStatusProduto.SobEncomenda ? (
+                                    <p className="flex items-center gap-2 text-[11px] text-blue-500">
+                                        <span className="size-1.5 rounded-full bg-blue-500" />
+
+                                        Sob Encomenda
+                                    </p>
+                                )
+                                    : (
+                                        <p className="text-[11px] text-gray-400">
+                                            {props.produtos?.statusProduto}
+                                        </p>
+                                    )}
                             </span>
                         </div>
 

@@ -94,7 +94,10 @@ export function getColumns({
                         ) : row.original.statusProduto === EnumStatusProduto.PreVenda ? (
                             <p className="text-orange-400 text-[11px] flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-orange-400"></span>Pré-venda</p>
-                        ) : (
+                        ) : row.original.statusProduto === EnumStatusProduto.SobEncomenda ? (
+                            <p className="text-blue-500 text-[11px] flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Sob Encomenda</p>
+                        ): (
                             <p>{row.original.statusProduto}</p>
                         )}
                     </Fragment>

@@ -81,7 +81,7 @@ export function InformacoesGerais({
                                     required
                                 />
                             </InputGroup>
-                            <FieldLabel className="text-white mt-5">Nome do artista / banda *</FieldLabel>
+                            <FieldLabel className="text-white mt-5">Artista / Banda *</FieldLabel>
                             <InputGroup className="border-[#2A2F3A]">
                                 <InputGroupInput
                                     value={nomeArtistaBanda}

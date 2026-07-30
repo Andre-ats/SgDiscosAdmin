@@ -67,6 +67,7 @@ export enum EnumStatusProduto {
   Inativo = "Inativo",
   Esgotado = "Esgotado",
   PreVenda = "PreVenda",
+  SobEncomenda = "SobEncomenda"
 }
 
 export enum EnumTipoArquivoProduto {
@@ -78,6 +79,7 @@ export enum EnumTipoDeAlbum {
   Album = "Album",
   EP = "EP",
   Single = "Single",
+  Gatefold = "Gatefold",
   Live = "Live",
   Remix = "Remix",
   Deluxe = "Deluxe",
