@@ -30,7 +30,7 @@ export function StatusEDisponibilidade({
                 <CardContent>
                     <Field>
                         <FieldLabel className="text-white mt-5">Status *</FieldLabel>
-                        <Select value={statusProduto} onValueChange={setStatusProduto}>
+                        <Select value={statusProduto} onValueChange={setStatusProduto} required>
                             <SelectTrigger className="w-full border-[#2A2F3A] bg-fundoTerciaria text-white">
                                 <div className="flex flex-col items-start">
                                     <SelectValue placeholder="Status..." />

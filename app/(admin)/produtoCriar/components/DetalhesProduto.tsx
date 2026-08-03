@@ -50,7 +50,7 @@ export function DetalhesProduto({
                         <div className="w-full">
                             <Field>
                                 <FieldLabel className="text-white mt-5">Formato *</FieldLabel>
-                                <Select value={formatoProduto} onValueChange={setFormatoProduto}>
+                                <Select value={formatoProduto} onValueChange={setFormatoProduto} required>
                                     <SelectTrigger className="w-full border-[#2A2F3A] bg-fundoTerciaria text-white">
                                         <div className="flex flex-col items-start">
                                             <SelectValue placeholder="Formato..." />
@@ -75,7 +75,7 @@ export function DetalhesProduto({
                         <div className="w-full">
                             <Field>
                                 <FieldLabel className="text-white mt-5">Tipo de álbum *</FieldLabel>
-                                <Select value={tipoDeAlbum} onValueChange={setTipoDeAlbum}>
+                                <Select value={tipoDeAlbum} onValueChange={setTipoDeAlbum} required>
                                     <SelectTrigger className="w-full border-[#2A2F3A] bg-fundoTerciaria text-white">
                                         <div className="flex flex-col items-start">
                                             <SelectValue placeholder="Tipo de álbum..." />

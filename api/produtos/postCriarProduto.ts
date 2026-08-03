@@ -60,6 +60,8 @@ export async function postCriarProduto(body: ICriarProdutoInput) {
     window.location.replace("/login");
   }
 
+  console.log(data.errors)
+
   if (!response.ok) {
     if (Array.isArray(data?.erro)) {
       throw new Error(data.erro.join("\n"));

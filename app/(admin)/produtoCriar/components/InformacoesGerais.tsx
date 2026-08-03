@@ -100,14 +100,14 @@ export function InformacoesGerais({
                                 <Textarea
                                     value={descricao}
                                     onChange={(e) => setDescricao(e.target.value)}
-                                    maxLength={2000}
+                                    maxLength={4000}
                                     placeholder="Descreva o produto, faixas, edições, detalhes, etc."
                                     className="w-full min-h-40 resize-none break-all text-white border-[#2A2F3A]"
                                 />
 
                                 <div className="mt-2 flex justify-end">
                                     <span className="text-sm text-zinc-400">
-                                        {descricao.length}/2000
+                                        {descricao.length}/4000
                                     </span>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@ export function InformacoesGerais({
                                 <div className="md:w-1/2 w-full">
                                     <Field>
                                         <FieldLabel className="text-white mt-5">Condição *</FieldLabel>
-                                        <Select value={condicao} onValueChange={setCondicao}>
+                                        <Select value={condicao} onValueChange={setCondicao} required>
                                             <SelectTrigger className="w-full border-[#2A2F3A] bg-fundoTerciaria text-white">
                                                 <div className="flex flex-col items-start">
                                                     <SelectValue placeholder="Condição..." />
@@ -199,7 +199,7 @@ export function InformacoesGerais({
                                 <div className="md:w-1/2 w-full">
                                     <Field>
                                         <FieldLabel className="text-white mt-5">Embalagem *</FieldLabel>
-                                        <Select value={embalagem} onValueChange={setEmbalagem}>
+                                        <Select value={embalagem} onValueChange={setEmbalagem} required>
                                             <SelectTrigger className="w-full border-[#2A2F3A] bg-fundoTerciaria text-white">
                                                 <div className="flex flex-col items-start">
                                                     <SelectValue placeholder="Embalagem..." />
